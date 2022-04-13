@@ -1,11 +1,11 @@
 package edgehub
 
 import (
+	"log"
 	"sync"
 	"time"
 
-	"k8s.io/klog/v2"
-
+	"github.com/apache/pulsar-client-go/pulsar"
 	"github.com/kubeedge/beehive/pkg/core"
 	beehiveContext "github.com/kubeedge/beehive/pkg/core/context"
 	"github.com/kubeedge/kubeedge/edge/pkg/common/modules"
@@ -13,6 +13,7 @@ import (
 	"github.com/kubeedge/kubeedge/edge/pkg/edgehub/clients"
 	"github.com/kubeedge/kubeedge/edge/pkg/edgehub/config"
 	"github.com/kubeedge/kubeedge/pkg/apis/componentconfig/edgecore/v1alpha1"
+	"k8s.io/klog/v2"
 )
 
 var HasTLSTunnelCerts = make(chan bool, 1)
@@ -24,6 +25,7 @@ type EdgeHub struct {
 	reconnectChan chan struct{}
 	keeperLock    sync.RWMutex
 	enable        bool
+	pulsarClient  pulsar.Client
 }
 
 var _ core.Module = (*EdgeHub)(nil)
@@ -64,12 +66,18 @@ func (eh *EdgeHub) Start() {
 	HasTLSTunnelCerts <- true
 	close(HasTLSTunnelCerts)
 
+	//启动pulsar客户端
+	pulsarClient := createPulsarClient()
+	eh.pulsarClient = pulsarClient
+
 	go eh.ifRotationDone()
 
 	for {
 		select {
 		case <-beehiveContext.Done():
 			klog.Warning("EdgeHub stop")
+			// 进程退出 关闭连接
+			eh.pulsarClient.Close()
 			return
 		default:
 		}
@@ -115,4 +123,22 @@ func (eh *EdgeHub) Start() {
 			}
 		}
 	}
+}
+
+// 创建pulsar客户端
+func createPulsarClient() pulsar.Client {
+
+	operationTimeout := time.Duration(config.Config.Pulsar.OperationTimeout)
+	connectionTimeout := time.Duration(config.Config.Pulsar.ConnectionTimeout)
+
+	client, err := pulsar.NewClient(pulsar.ClientOptions{
+		URL:               config.Config.Pulsar.PulsarServerURL,
+		OperationTimeout:  operationTimeout * time.Second,
+		ConnectionTimeout: connectionTimeout * time.Second,
+	})
+	if err != nil {
+		log.Fatalf("Could not instantiate Pulsar client: %v", err)
+	}
+
+	return client
 }

@@ -1,10 +1,12 @@
 package edgehub
 
 import (
+	"context"
+	"encoding/json"
 	"fmt"
-	"time"
-
+	"github.com/apache/pulsar-client-go/pulsar"
 	"k8s.io/klog/v2"
+	"time"
 
 	beehiveContext "github.com/kubeedge/beehive/pkg/core/context"
 	"github.com/kubeedge/beehive/pkg/core/model"
@@ -142,9 +144,17 @@ func (eh *EdgeHub) routeToCloud() {
 		}
 
 		// post message to cloud hub
-		err = eh.sendToCloud(message)
+		//err = eh.sendToCloud(message)
+		//if err != nil {
+		//    klog.Errorf("failed to send message to cloud: %v", err)
+		//    eh.reconnectChan <- struct{}{}
+		//    return
+		//}
+
+		// 修改上报消息通过 pulsar发送至云端
+		err = eh.pulsarProducer(message, config.Config.Pulsar.UpdateDeviceModleTopic)
 		if err != nil {
-			klog.Errorf("failed to send message to cloud: %v", err)
+			klog.Errorf("failed to send message to pulsar cloud: %v", err)
 			eh.reconnectChan <- struct{}{}
 			return
 		}
@@ -196,4 +206,67 @@ func (eh *EdgeHub) ifRotationDone() {
 			eh.reconnectChan <- struct{}{}
 		}
 	}
+}
+
+// 启动监听 服务端设备信息更新
+func (eh *EdgeHub) pulsarCounsunmer(topic string) error {
+	//接收消息
+	consumer, err := eh.pulsarClient.Subscribe(pulsar.ConsumerOptions{
+		Topic:            topic,
+		SubscriptionName: "test-sub",
+		Type:             pulsar.Shared,
+	})
+	if err != nil {
+		klog.Errorf("create producer failed with error: %v", err)
+		return err
+	}
+
+	defer consumer.Close()
+
+	for {
+		msg, err := consumer.Receive(context.Background())
+		if err != nil {
+			klog.Errorf("recv msg failed with error: %v", err)
+			//return err
+		}
+
+		klog.Infof("Recv msg: %v", msg)
+
+		consumer.Ack(msg)
+	}
+
+	if err = consumer.Unsubscribe(); err != nil {
+		klog.Errorf("close consumer failed with error: %v", err)
+		return err
+	}
+
+	return nil
+}
+
+// 启动上报 采集设备信息上报
+func (eh *EdgeHub) pulsarProducer(model model.Message, topic string) error {
+	// 创建生产者
+	producer, err := eh.pulsarClient.CreateProducer(pulsar.ProducerOptions{
+		Topic: topic,
+	})
+
+	if err != nil {
+		klog.Errorf("create producer failed with error: %v", err)
+		return err
+	}
+
+	defer producer.Close()
+
+	// 发送信息至云端
+	paylod, err := json.Marshal(model.Content)
+
+	_, err = producer.Send(context.Background(), &pulsar.ProducerMessage{
+		Payload: paylod,
+	})
+	if err != nil {
+		klog.Errorf("producer send msg failed with error: %v", err)
+		return err
+	}
+
+	return nil
 }

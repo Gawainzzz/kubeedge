@@ -271,6 +271,21 @@ type EdgeHub struct {
 	// RotateCertificates indicates whether edge certificate can be rotated
 	// default true
 	RotateCertificates bool `json:"rotateCertificates,omitempty"`
+	// 新增 pulsar 配置
+	Pulsar *Pulsar `json:"Pulsar,omitempty"`
+}
+
+type Pulsar struct {
+	// 新增pulsar服务端url
+	PulsarServerURL string `json:"pulsarServerURL,omitempty"`
+	// 会话超时时间
+	OperationTimeout int64 `json:"OperationTimeout,omitempty"`
+	// 连接超时时间
+	ConnectionTimeout int64 `json:"ConnectionTimeout,omitempty"`
+	// 上报设备状态topic
+	UpdateDeviceModleTopic string `json:"UpdateDeviceModleTopic,omitempty"`
+	// 下发设备状态topic
+	RevcDeviceModleTopic string `json:"RevcDeviceModleTopic,omitempty"`
 }
 
 // EdgeHubQUIC indicates the quic client config

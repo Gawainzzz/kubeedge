@@ -9,11 +9,19 @@ github.com/256dpi/gomqtt/topic
 github.com/256dpi/gomqtt/transport
 # github.com/256dpi/mercury v0.1.0
 github.com/256dpi/mercury
+# github.com/99designs/keyring v1.1.6
+github.com/99designs/keyring
+# github.com/AthenZ/athenz v1.10.39
+github.com/AthenZ/athenz/clients/go/zts
+github.com/AthenZ/athenz/libs/go/zmssvctoken
+github.com/AthenZ/athenz/libs/go/ztsroletoken
 # github.com/Azure/go-ansiterm v0.0.0-20210617225240-d185dfc1b5a1
 github.com/Azure/go-ansiterm
 github.com/Azure/go-ansiterm/winterm
 # github.com/BurntSushi/toml v0.3.1
 github.com/BurntSushi/toml
+# github.com/DataDog/zstd v1.5.0
+github.com/DataDog/zstd
 # github.com/JeffAshton/win_pdh v0.0.0-20161109143554-76bb4ee9f0ab
 github.com/JeffAshton/win_pdh
 # github.com/MakeNowJust/heredoc v0.0.0-20170808103936-bb23615498cd
@@ -58,6 +66,23 @@ github.com/NYTimes/gziphandler
 github.com/PuerkitoBio/purell
 # github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578
 github.com/PuerkitoBio/urlesc
+# github.com/apache/pulsar-client-go v0.8.1
+## explicit
+github.com/apache/pulsar-client-go/pulsar
+github.com/apache/pulsar-client-go/pulsar/crypto
+github.com/apache/pulsar-client-go/pulsar/internal
+github.com/apache/pulsar-client-go/pulsar/internal/auth
+github.com/apache/pulsar-client-go/pulsar/internal/compression
+github.com/apache/pulsar-client-go/pulsar/internal/crypto
+github.com/apache/pulsar-client-go/pulsar/internal/pulsar_proto
+github.com/apache/pulsar-client-go/pulsar/log
+# github.com/apache/pulsar-client-go/oauth2 v0.0.0-20220120090717-25e59572242e
+github.com/apache/pulsar-client-go/oauth2
+github.com/apache/pulsar-client-go/oauth2/cache
+github.com/apache/pulsar-client-go/oauth2/clock
+github.com/apache/pulsar-client-go/oauth2/store
+# github.com/ardielle/ardielle-go v1.5.2
+github.com/ardielle/ardielle-go/rdl
 # github.com/armon/circbuf v0.0.0-20190214190532-5111143e8da2
 ## explicit
 github.com/armon/circbuf
@@ -184,6 +209,8 @@ github.com/coreos/go-systemd/v22/dbus
 github.com/coreos/go-systemd/v22/journal
 # github.com/cyphar/filepath-securejoin v0.2.2
 github.com/cyphar/filepath-securejoin
+# github.com/danieljoos/wincred v1.0.2
+github.com/danieljoos/wincred
 # github.com/davecgh/go-spew v1.1.1
 github.com/davecgh/go-spew/spew
 # github.com/docker/cli v20.10.7+incompatible
@@ -245,6 +272,15 @@ github.com/docker/go-connections/tlsconfig
 github.com/docker/go-metrics
 # github.com/docker/go-units v0.4.0
 github.com/docker/go-units
+# github.com/dvsekhvalnov/jose2go v0.0.0-20200901110807-248326c1351b
+github.com/dvsekhvalnov/jose2go
+github.com/dvsekhvalnov/jose2go/aes
+github.com/dvsekhvalnov/jose2go/arrays
+github.com/dvsekhvalnov/jose2go/base64url
+github.com/dvsekhvalnov/jose2go/compact
+github.com/dvsekhvalnov/jose2go/kdf
+github.com/dvsekhvalnov/jose2go/keys/ecc
+github.com/dvsekhvalnov/jose2go/padding
 # github.com/eclipse/paho.mqtt.golang v1.2.0
 ## explicit
 github.com/eclipse/paho.mqtt.golang
@@ -287,6 +323,8 @@ github.com/gobwas/glob/syntax/ast
 github.com/gobwas/glob/syntax/lexer
 github.com/gobwas/glob/util/runes
 github.com/gobwas/glob/util/strings
+# github.com/godbus/dbus v0.0.0-20190726142602-4481cbc300e2
+github.com/godbus/dbus
 # github.com/godbus/dbus/v5 v5.0.4
 github.com/godbus/dbus/v5
 # github.com/gogo/protobuf v1.3.2
@@ -314,6 +352,8 @@ github.com/golang/protobuf/ptypes/any
 github.com/golang/protobuf/ptypes/duration
 github.com/golang/protobuf/ptypes/timestamp
 github.com/golang/protobuf/ptypes/wrappers
+# github.com/golang/snappy v0.0.1
+github.com/golang/snappy
 # github.com/google/btree v1.0.1
 github.com/google/btree
 # github.com/google/cadvisor v0.39.3
@@ -399,6 +439,8 @@ github.com/grpc-ecosystem/go-grpc-prometheus
 github.com/grpc-ecosystem/grpc-gateway/internal
 github.com/grpc-ecosystem/grpc-gateway/runtime
 github.com/grpc-ecosystem/grpc-gateway/utilities
+# github.com/gsterjov/go-libsecret v0.0.0-20161001094733-a6f4afe4910c
+github.com/gsterjov/go-libsecret
 # github.com/hashicorp/golang-lru v0.5.3
 ## explicit
 github.com/hashicorp/golang-lru
@@ -420,6 +462,8 @@ github.com/josharian/intern
 github.com/json-iterator/go
 # github.com/karrick/godirwalk v1.16.1
 github.com/karrick/godirwalk
+# github.com/keybase/go-keychain v0.0.0-20190712205309-48d3d31d256d
+github.com/keybase/go-keychain
 # github.com/klauspost/compress v1.11.13
 github.com/klauspost/compress/fse
 github.com/klauspost/compress/huff0
@@ -472,6 +516,8 @@ github.com/lib/pq/oid
 github.com/lib/pq/scram
 # github.com/liggitt/tabwriter v0.0.0-20181228230101-89fcab3d43de
 github.com/liggitt/tabwriter
+# github.com/linkedin/goavro/v2 v2.9.8
+github.com/linkedin/goavro/v2
 # github.com/lithammer/dedent v1.1.0
 github.com/lithammer/dedent
 # github.com/lucas-clemente/aes12 v0.0.0-20171027163421-cd47fb39b79f
@@ -510,6 +556,8 @@ github.com/mindprince/gonvml
 github.com/mistifyio/go-zfs
 # github.com/mitchellh/copystructure v1.1.1
 github.com/mitchellh/copystructure
+# github.com/mitchellh/go-homedir v1.1.0
+github.com/mitchellh/go-homedir
 # github.com/mitchellh/go-ps v0.0.0-20190716172923-621e5597135b
 ## explicit
 github.com/mitchellh/go-ps
@@ -537,6 +585,8 @@ github.com/monochromegane/go-gitignore
 github.com/morikuni/aec
 # github.com/mrunalp/fileutils v0.5.0
 github.com/mrunalp/fileutils
+# github.com/mtibben/percent v0.2.1
+github.com/mtibben/percent
 # github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822
 github.com/munnerz/goautoneg
 # github.com/mxk/go-flowrate v0.0.0-20140419014527-cca7078d478f
@@ -634,11 +684,14 @@ github.com/paypal/gatt/linux/util
 github.com/paypal/gatt/xpc
 # github.com/peterbourgon/diskv v2.0.1+incompatible
 github.com/peterbourgon/diskv
+# github.com/pierrec/lz4 v2.0.5+incompatible
+github.com/pierrec/lz4
+github.com/pierrec/lz4/internal/xxh32
 # github.com/pkg/errors v0.9.1
 github.com/pkg/errors
 # github.com/pmezard/go-difflib v1.0.0
 github.com/pmezard/go-difflib/difflib
-# github.com/prometheus/client_golang v1.11.0
+# github.com/prometheus/client_golang v1.11.1
 ## explicit
 github.com/prometheus/client_golang/prometheus
 github.com/prometheus/client_golang/prometheus/internal
@@ -672,6 +725,8 @@ github.com/shirou/gopsutil/mem
 github.com/shopspring/decimal
 # github.com/sirupsen/logrus v1.8.1
 github.com/sirupsen/logrus
+# github.com/spaolacci/murmur3 v1.1.0
+github.com/spaolacci/murmur3
 # github.com/spf13/cast v1.3.1
 github.com/spf13/cast
 # github.com/spf13/cobra v1.2.1
@@ -826,6 +881,7 @@ golang.org/x/crypto/openpgp/packet
 golang.org/x/crypto/openpgp/s2k
 golang.org/x/crypto/pbkdf2
 golang.org/x/crypto/scrypt
+golang.org/x/crypto/ssh/terminal
 # golang.org/x/mod v0.4.2
 golang.org/x/mod/module
 golang.org/x/mod/semver

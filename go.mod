@@ -4,6 +4,7 @@ go 1.16
 
 require (
 	github.com/256dpi/gomqtt v0.10.4
+	github.com/apache/pulsar-client-go v0.8.1
 	github.com/armon/circbuf v0.0.0-20190214190532-5111143e8da2 // indirect
 	github.com/astaxie/beego v1.12.0
 	github.com/blang/semver v3.5.1+incompatible
@@ -32,7 +33,7 @@ require (
 	github.com/onsi/gomega v1.10.3
 	github.com/opencontainers/runc v1.0.3 // indirect
 	github.com/paypal/gatt v0.0.0-20151011220935-4ae819d591cf
-	github.com/prometheus/client_golang v1.11.0
+	github.com/prometheus/client_golang v1.11.1
 	github.com/shirou/gopsutil v2.21.11+incompatible
 	github.com/spf13/cobra v1.2.1
 	github.com/spf13/pflag v1.0.5
